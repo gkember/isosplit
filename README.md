@@ -2,6 +2,10 @@
 
 Single file port to python
 
+Beta development
+
+Code runs the example by Jeremy Magland and using the supplied .txt file. Data may be supplied to algorithm via this filename. The output is a simple graphic. Output of the data and labels will require a minor modification of the program.
+
 ## Jupyter
 Sandbox for development
 
