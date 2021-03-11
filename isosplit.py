@@ -932,18 +932,23 @@ def generate_isosplit_data(num_dimensions=2) :
     
     return X
 
-
 # In[14]:
 #freq-based labelling
 def freq_based_label(labels) :
 
     label_list = np.unique(labels)
-    label_freq = [np.sum(labels == j) for j in label_list]
-    freq_label = np.flip(np.argsort(label_freq))
-    for j in np.arange(len(label_list)) :
-        labels[np.nonzero(labels == label_list[j])[0]] = freq_label[j]
+    #print('label list ',label_list)
+    label_freq = np.array([len(np.nonzero(labels == j)[0]) for j in label_list])
+    #print('label freq ',label_freq)
+    freq_label = label_list[np.argsort(-1*label_freq)]
+    #print('freq label ',freq_label)
+    labels_copy = np.copy(labels)
+    for i, new_label in enumerate(freq_label) :
+        #print('label_list newlabel ',label_list[i],new_label)
+        labels[np.nonzero(labels_copy == freq_label[i])[0]] = i
     
     return labels
+
 
 # In[15]:
 def plot_X_labels(X, labels) :
